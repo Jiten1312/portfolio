@@ -1,6 +1,6 @@
 [
   { "src": "photos/toronto-dusk.jpg", "caption": "Toronto at dusk", "alt": "Toronto skyline at dusk" },
   { "src": "photos/moraine-lake.jpg", "caption": "Moraine Lake", "alt": "Moraine Lake" },
-  { "src": "public/photos/star-gazing.jpg", "caption": "Sky full of stars", "alt": "Star Gazing" },
+  { "src": "public/photos/star-gazing.jpeg", "caption": "Sky full of stars", "alt": "Star Gazing" },
   { "src": "photos/dundas-valley.jpg", "caption": "Chasing autumn hues", "alt": "Dundas Valley in autumn" }
 ]
