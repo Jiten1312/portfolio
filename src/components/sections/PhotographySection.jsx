@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Section from './Section.jsx'
 import { usePhotos } from '../../hooks/usePhotos.js'
 
@@ -18,9 +18,41 @@ function ChevronRight() {
   )
 }
 
+function PhotoFigure({ photo }) {
+  const [isWidescreen, setIsWidescreen] = useState(false)
+
+  const handleImageLoad = (event) => {
+    const { naturalWidth, naturalHeight } = event.currentTarget
+    setIsWidescreen(Math.abs(naturalWidth / naturalHeight - 16 / 9) < 0.02)
+  }
+
+  return (
+    <figure className="relative group shrink-0 basis-[calc((100%-1.5rem)/3)] snap-start aspect-square overflow-hidden rounded bg-panel">
+      {isWidescreen && (
+        <img
+          src={photo.src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover blur-md scale-110"
+        />
+      )}
+      <img
+        src={photo.src}
+        alt={photo.alt || photo.caption}
+        loading="lazy"
+        onLoad={handleImageLoad}
+        className={`relative w-full h-full ${isWidescreen ? 'object-contain' : 'object-cover transition-transform duration-300 group-hover:scale-105'}`}
+      />
+      <figcaption className="absolute inset-x-0 bottom-0 px-2 py-1.5 text-[11px] text-white text-center bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+        {photo.caption}
+      </figcaption>
+    </figure>
+  )
+}
+
 /**
  * Photography carousel driven by public/photos/photos.json.
- * Horizontal scroll with exactly 3 photos visible at a time (9:16 tiles),
+ * Horizontal scroll with exactly 3 photos visible at a time (square tiles),
  * plus < > buttons that scroll one page per click.
  * Add/remove photos by editing the JSON — no code changes needed.
  */
@@ -52,20 +84,7 @@ export default function PhotographySection() {
           >
             <div className="flex gap-3 p-1">
               {photos.map((p) => (
-                <figure
-                  key={p.src}
-                  className="relative group shrink-0 basis-[calc((100%-1.5rem)/3)] snap-start aspect-[9/16] overflow-hidden rounded bg-panel"
-                >
-                  <img
-                    src={p.src}
-                    alt={p.alt || p.caption}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <figcaption className="absolute inset-x-0 bottom-0 px-2 py-1.5 text-[11px] text-white text-center bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    {p.caption}
-                  </figcaption>
-                </figure>
+                <PhotoFigure key={p.src} photo={p} />
               ))}
             </div>
           </div>

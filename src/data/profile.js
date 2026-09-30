@@ -1,7 +1,7 @@
 export const PROFILE = {
   name: 'Jiten Dhimmar',
   title: 'SOFTWARE ENGINEER',
-  avatar: 'https://github.com/Jiten1312.png',
+  avatar: 'https://github.com/jitendhimmar.png',
   location: 'Toronto, Ontario, Canada',
   degree: 'Masters in Applied Computing, University of Windsor',
   email: 'jitendhimmar1312@gmail.com',
@@ -16,7 +16,7 @@ export const PROFILE = {
 
   socials: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jiten-dhimmar/', icon: 'linkedin' },
-    { label: 'GitHub', href: 'https://github.com/Jiten1312', icon: 'github' },
+    { label: 'GitHub', href: 'https://github.com/jitendhimmar', icon: 'github' },
     { label: 'Instagram', href: 'https://www.instagram.com/Jiten_Dhimmar/', icon: 'instagram' },
     { label: 'Email', href: 'mailto:jitendhimmar1312@gmail.com', icon: 'mail' },
   ],
